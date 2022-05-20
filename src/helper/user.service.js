@@ -1,4 +1,4 @@
-import { post, get, put } from "./httpHelper";
+import { post, get, put, httpDelete } from "./httpHelper";
 import config from './config'
 
 export const getAllUsers = () => {
@@ -15,4 +15,8 @@ export const createUser = (payload) => {
 
 export const updateUserById = (id, payload) => {
   return put(`${config.apiURL}/users/${id}`, payload);
+}
+
+export const deleteUserById = (id) => {
+  return httpDelete(`${config.apiURL}/users/${id}`);
 }

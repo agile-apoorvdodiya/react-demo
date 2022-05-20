@@ -19,6 +19,7 @@ export const Layout = (props) => {
         <Routes>
           <Route path="users">
             <Route path="" element={<UsersList onSomeEvent={eventHandler} />} />
+            <Route path="create" element={<EditUser />} />
             <Route path=":id" element={<EditUser />} />
           </Route>
           <Route element={<Navigate to="/users" />} />

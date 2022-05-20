@@ -30,3 +30,7 @@ input, input[type=password] {
   border-radius: 5px;
   padding: 4px;
 }
+
+.text-danger {
+  color: lightpink !important;
+}

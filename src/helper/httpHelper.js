@@ -39,6 +39,23 @@ export const put = (url, payload, headers = {}) => {
   })
 }
 
+export const httpDelete = (url, headers = {}) => {
+  return axios.delete(url, {
+    headers: {
+      authorization: `Bearer ${getToken()}`,
+      ...headers
+    }
+  }).catch(err => {
+    if (err.response) {
+      if (err.response?.data?.message) {
+        throw { message: err.response?.data?.message }
+      }
+      throw err.response
+    }
+    throw err
+  })
+}
+
 export const get = (url, headers = {}) => {
   return axios.get(url, {
     headers: {

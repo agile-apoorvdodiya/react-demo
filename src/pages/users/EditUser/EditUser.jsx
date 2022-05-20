@@ -1,4 +1,4 @@
-import { useEffect, useId, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import {
   createUser,
@@ -13,9 +13,10 @@ export const EditUser = (props) => {
   const userId = useParams()["id"];
   const navigate = useNavigate();
   useEffect(() => {
-    getUserById(userId).then((res) => {
-      formik.setValues(res?.data?.user);
-    });
+    if (userId)
+      getUserById(userId).then((res) => {
+        formik.setValues(res?.data?.user);
+      });
   }, []);
 
   const formik = useFormik({
@@ -39,14 +40,12 @@ export const EditUser = (props) => {
         .min(6, "Password must be of at lease 6 characters"),
     }),
     onSubmit: (value) => {
-      console.log(value);
       if (formik.isValid) {
-        (useId
+        (!!userId
           ? updateUserById(userId, formik.values)
           : createUser(formik.values)
         )
           .then((res) => {
-            console.log(res);
             swal
               .fire({
                 icon: "success",

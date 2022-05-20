@@ -1,22 +1,51 @@
 import { useEffect, useState } from "react";
 import * as userService from "../../../helper/user.service";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 export const UsersList = (props) => {
   const [users, setUsers] = useState([]);
-  useEffect(() => {
+  const getAllUsers = () => {
     userService.getAllUsers().then((res) => {
       console.log(res);
       setUsers(res.data.users);
     });
+  };
+  useEffect(() => {
+    getAllUsers();
   }, []);
-
   const clickHandler = (e) => {
     console.log("clicked");
     props.onSomeEvent({ foo: "bar" });
   };
+
+  const deleteUser = (id) => {
+    Swal.fire({
+      icon: "warning",
+      title: "Are you sure?",
+      text: "This operation is irreversible!",
+    }).then((res) => {
+      if (res.isConfirmed) {
+        userService.deleteUserById(id).then((res) => {
+          Swal.fire({
+            icon: "success",
+            title: res?.data?.message,
+          }).then(() => {
+            getAllUsers()
+          });
+        });
+      }
+    });
+  };
   return (
     <div className="container">
-      <div className="display-4 mt-3">Users</div>
+      <div className="mt-3 d-flex justify-content-between">
+        <div className="display-4">Users</div>
+        <div>
+          <Link to={"/users/create"} className="btn btn-sm btn-outline-primary">
+            Create
+          </Link>
+        </div>
+      </div>
       {users.length ? (
         <div className="table-responsive">
           <table className="table">
@@ -53,7 +82,10 @@ export const UsersList = (props) => {
                       >
                         <i className="fa fa-pencil"></i>
                       </Link>
-                      <button className="btn btn-sm ms-2">
+                      <button
+                        className="btn btn-sm ms-2"
+                        onClick={() => deleteUser(user._id)}
+                      >
                         <i className="fa fa-trash"></i>
                       </button>
                     </td>
