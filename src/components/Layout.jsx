@@ -1,5 +1,5 @@
 import { Header } from "./Header";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 import { UsersList } from "../pages/users/UsersList/UsersList";
 import { EditUser } from "../pages/users/EditUser/EditUser";
 import "./layout.css";
@@ -21,6 +21,7 @@ export const Layout = (props) => {
             <Route path="" element={<UsersList onSomeEvent={eventHandler} />} />
             <Route path=":id" element={<EditUser />} />
           </Route>
+          <Route element={<Navigate to="/users" />} />
         </Routes>
       </div>
     </div>

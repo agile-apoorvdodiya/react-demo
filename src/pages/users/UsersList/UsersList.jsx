@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import * as userService from "../../../helper/user.service";
-
+import { Link } from "react-router-dom";
 export const UsersList = (props) => {
   const [users, setUsers] = useState([]);
   useEffect(() => {
@@ -19,7 +19,7 @@ export const UsersList = (props) => {
       <div className="display-4 mt-3">Users</div>
       {users.length ? (
         <div className="table-responsive">
-          <table className="table table-striped">
+          <table className="table">
             <thead>
               <tr>
                 <th>Name</th>
@@ -44,10 +44,16 @@ export const UsersList = (props) => {
                       )}
                     </td>
                     <td>
-                      <button className="btn btn-sm">
-                        <i className="fa fa-eye"></i>
+                      <button className="btn btn-sm ms-2">
+                        <i className="fa fa-file"></i>
                       </button>
-                      <button className="btn btn-sm">
+                      <Link
+                        className="btn btn-sm ms-2"
+                        to={"/users/" + user._id}
+                      >
+                        <i className="fa fa-pencil"></i>
+                      </Link>
+                      <button className="btn btn-sm ms-2">
                         <i className="fa fa-trash"></i>
                       </button>
                     </td>

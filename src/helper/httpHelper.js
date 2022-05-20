@@ -8,7 +8,24 @@ const getToken = () => {
 export const post = (url, payload, headers = {}) => {
   return axios.post(url, payload, {
     headers: {
-      authorization: getToken(),
+      authorization: `Bearer ${getToken()}`,
+      ...headers
+    }
+  }).catch(err => {
+    if (err.response) {
+      if (err.response?.data?.message) {
+        throw { message: err.response?.data?.message }
+      }
+      throw err.response
+    }
+    throw err
+  })
+}
+
+export const put = (url, payload, headers = {}) => {
+  return axios.put(url, payload, {
+    headers: {
+      authorization: `Bearer ${getToken()}`,
       ...headers
     }
   }).catch(err => {
@@ -23,7 +40,6 @@ export const post = (url, payload, headers = {}) => {
 }
 
 export const get = (url, headers = {}) => {
-  console.log('token', getToken());
   return axios.get(url, {
     headers: {
       authorization: `Bearer ${getToken()}`,

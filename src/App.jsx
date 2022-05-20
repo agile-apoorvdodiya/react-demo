@@ -93,17 +93,17 @@ function App() {
                   />
                 }
               />
-              <Route path="*" element={<Navigate to="/users" replace />} />
+              {/* <Route path="*" element={<Navigate to="/users" replace />} /> */}
             </Route>
           ) : (
             <Route>
-              <Route
+              {/* <Route
                 path="/login"
                 element={
                   <Login handleLogin={(data) => setLoginStatus(data.status)} />
                 }
               />
-              <Route path="*" element={<Navigate to="/login" replace />} />
+              <Route path="*" element={<Navigate to="/login" replace />} /> */}
             </Route>
           )}
         </Routes>
