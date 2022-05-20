@@ -7,10 +7,14 @@ import "./layout.css";
 export const Layout = (props) => {
   const eventHandler = (data) => {
     console.log(data);
-  }
+  };
   return (
     <div>
-      <Header></Header>
+      <Header
+        handleLogout={() => {
+          props.handleLogout({ status: false });
+        }}
+      ></Header>
       <div className="container">
         <Routes>
           <Route path="users">

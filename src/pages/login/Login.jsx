@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import * as authService from "../../helper/auth.service";
 import swal from "sweetalert2";
-import { Navigate } from "react-router-dom";
-export const Login = () => {
+import { useNavigate } from "react-router-dom";
+export const Login = (props) => {
+  const navigate = useNavigate()
+
   const [loginForm, setLoginForm] = useState({
     email: "",
     password: "",
@@ -12,11 +14,12 @@ export const Login = () => {
     authService
       .login(loginForm)
       .then((res) => {
-        console.log(res);
-        return <Navigate to="/users" />
+        props.handleLogin({ status: true })
+        navigate('/users', { replace: true })
       })
       .catch((err) => {
         console.log(err);
+        props.handleLogin({ status: false })
         swal.fire({
           icon: "error",
           title: err.message || "Something went wrong",

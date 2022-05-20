@@ -21,3 +21,21 @@ export const post = (url, payload, headers = {}) => {
     throw err
   })
 }
+
+export const get = (url, headers = {}) => {
+  console.log('token', getToken());
+  return axios.get(url, {
+    headers: {
+      authorization: `Bearer ${getToken()}`,
+      ...headers
+    }
+  }).catch(err => {
+    if (err.response) {
+      if (err.response?.data?.message) {
+        throw { message: err.response?.data?.message }
+      }
+      throw err.response
+    }
+    throw err
+  })
+}
