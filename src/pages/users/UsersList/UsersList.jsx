@@ -23,6 +23,7 @@ export const UsersList = (props) => {
       icon: "warning",
       title: "Are you sure?",
       text: "This operation is irreversible!",
+      showCancelButton: true,
     }).then((res) => {
       if (res.isConfirmed) {
         userService.deleteUserById(id).then((res) => {
@@ -30,7 +31,7 @@ export const UsersList = (props) => {
             icon: "success",
             title: res?.data?.message,
           }).then(() => {
-            getAllUsers()
+            getAllUsers();
           });
         });
       }

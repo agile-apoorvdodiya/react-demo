@@ -1,5 +1,6 @@
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css");
-body {
+body,
+.card {
   background-color: darkslategray;
   color: white !important;
   margin: 0;
@@ -19,11 +20,13 @@ code {
   color: white !important;
 }
 
-.table, .table-striped {
+.table,
+.table-striped {
   color: white !important;
 }
 
-input, input[type=password] {
+input,
+input[type="password"] {
   background-color: gray;
   outline: none;
   border: none;
