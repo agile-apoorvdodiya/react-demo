@@ -1,0 +1,9 @@
+.drag-container {
+  padding: 15px;
+  border: 1px solid;
+}
+
+.drag-item {
+  border: 1px solid;
+  padding: 10px;
+}
