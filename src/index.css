@@ -1,39 +1,13 @@
-@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css");
-body,
-.card {
-  background-color: darkslategray;
-  color: white !important;
+body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
-}
-
-.btn {
-  color: white !important;
-}
-
-.table,
-.table-striped {
-  color: white !important;
-}
-
-input,
-input[type="password"] {
-  background-color: gray;
-  outline: none;
-  border: none;
-  border-radius: 5px;
-  padding: 4px;
-}
-
-.text-danger {
-  color: lightpink !important;
 }
