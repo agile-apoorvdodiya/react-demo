@@ -57,7 +57,7 @@ export const Login = (props) => {
           <div className="flex flex-col mb-2">
             <label htmlFor="email">email</label>
             <input
-              type="text"
+              type="email"
               name="email"
               id="email"
               className={css.INPUT_TEXT}
@@ -72,7 +72,7 @@ export const Login = (props) => {
           <div className="flex flex-col mb-2">
             <label htmlFor="password">Password</label>
             <input
-              type="text"
+              type="password"
               name="password"
               id="password"
               className={css.INPUT_TEXT}
