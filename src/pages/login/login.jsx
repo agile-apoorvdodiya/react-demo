@@ -6,9 +6,12 @@ import { useFormik, useFormikContext } from "formik";
 import * as Yup from "yup";
 import { login } from "../../redux/slices/auth";
 import { doLogin } from "../../redux/action-call/auth";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 export const Login = (props) => {
   const [isDark, setIsDark] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     setIsDark(getTheme() || false);
@@ -20,7 +23,6 @@ export const Login = (props) => {
   };
 
   const dispatch = useDispatch();
-  const userDetails = useSelector((u) => u);
 
   const loginForm = useFormik({
     initialValues: {
@@ -28,8 +30,15 @@ export const Login = (props) => {
       password: "",
     },
     onSubmit: (value) => {
-      console.log(value);
-      dispatch(doLogin(value)).then((res) => console.log(res));
+      dispatch(doLogin(value)).then((res) => {
+        navigate("/users");
+      }).catch(err => {
+        console.log(err);
+        Swal.fire({
+          title: err.message || 'Something went wrong while logging in!',
+          icon: 'error'
+        })
+      });
     },
     validationSchema: Yup.object().shape({
       email: Yup.string().required("Please enter email"),

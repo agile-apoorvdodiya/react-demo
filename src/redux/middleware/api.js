@@ -18,14 +18,13 @@ export const apiMiddleware = (store) => (next) => (action) => {
     })
       .then((res) => {
         store.dispatch(apiSuccess(res));
-        console.log(success(res.data))
         store.dispatch(success(res.data));
 
         return Promise.resolve(res.data);
       })
       .catch((err) => {
         store.dispatch(apiError());
-        return Promise.reject(err);
+        return Promise.reject(err?.response?.data || err?.response || err);
       });
   }
 };

@@ -8,18 +8,22 @@ export const authSlice = createSlice({
   },
   reducers: {
     login: (s, action) => {
-      console.log(' ======== ', action);
-      localStorage.setItem("user", action.user);
-      localStorage.setItem("token", action.token);
+      localStorage.setItem("user", JSON.stringify(action.payload.user));
+      localStorage.setItem("token", action.payload?.user?.token);
       s.token = action.payload.user?.token;
       s.user = action.payload.user;
     },
     logout: (s) => {
       s.token = null;
+      s.user = null;
+      localStorage.removeItem('user')
+      localStorage.removeItem('token')
     },
     setUser: (s, action) => {
-      s.token = action.payload.user?.token;
-      s.user = action.payload.user;
+      const user = JSON.parse(localStorage.getItem("user") || "{}");
+      const token = localStorage.getItem("token");
+      s.token = token;
+      s.user = user;
     },
   },
 });
