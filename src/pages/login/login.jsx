@@ -54,7 +54,7 @@ export const Login = (props) => {
           onSubmit={loginForm.handleSubmit}
         >
           <h2 className="mb-3">Login</h2>
-          <div className="flex flex-col mb-2">
+          <div className={css.FORM_GROUP}>
             <label htmlFor="email">email</label>
             <input
               type="email"
@@ -65,11 +65,11 @@ export const Login = (props) => {
               onChange={loginForm.handleChange}
               value={loginForm.values.email}
             />
-            <div className="text-xs text-red-500 dark:text-red-200">
+            <div className={css.ERROR_BLOCK}>
               {loginForm.errors.email}
             </div>
           </div>
-          <div className="flex flex-col mb-2">
+          <div className={css.FORM_GROUP}>
             <label htmlFor="password">Password</label>
             <input
               type="password"
@@ -80,7 +80,7 @@ export const Login = (props) => {
               onChange={loginForm.handleChange}
               value={loginForm.values.password}
             />
-            <div className="text-xs text-red-500 dark:text-red-200">
+            <div className={css.ERROR_BLOCK}>
               {loginForm.errors.password}
             </div>
           </div>

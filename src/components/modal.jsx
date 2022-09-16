@@ -1,7 +1,16 @@
-import { useState } from "react";
+import { forwardRef, useImperativeHandle, useState } from "react";
 import { css } from "../constants/classes";
 
-export const Modal = (props) => {
+export const Modal = forwardRef((props, ref) => {
+  useImperativeHandle(ref, () => ({
+    close() {
+      onclose();
+    },
+    open() {
+      onOpen();
+    },
+  }));
+
   const [show, setShow] = useState(props.show);
 
   const onclose = () => {
@@ -44,6 +53,7 @@ export const Modal = (props) => {
                 <button
                   type="button"
                   className={css.BTN_PRIM}
+                  onClick={() => props.onModalSubmit()}
                 >
                   Save
                 </button>
@@ -54,4 +64,4 @@ export const Modal = (props) => {
       )}
     </>
   );
-};
+});

@@ -6,7 +6,6 @@ export const useInterceptors = () => {
     const {
       auth: { token },
     } = store.getState();
-    console.log(token);
     req.headers["authorization"] = `Bearer ${token}`;
     return req;
   });

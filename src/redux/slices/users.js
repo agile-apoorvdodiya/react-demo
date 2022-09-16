@@ -4,15 +4,22 @@ export const userSlice = createSlice({
   name: "users",
   initialState: {
     userList: [],
+    userDetails: {},
+    success: {},
   },
   reducers: {
     usersList: (s, action) => {
-      console.log(action);
       s.userList = action.payload.users;
+    },
+    usersDetails: (s, action) => {
+      s.userDetails = action.payload.user;
+    },
+    success: (s, action) => {
+      s.success = action.payload.user;
     },
   },
 });
 
-export const { usersList } = userSlice.actions;
+export const { usersList, usersDetails, success } = userSlice.actions;
 
 export default userSlice.reducer;
