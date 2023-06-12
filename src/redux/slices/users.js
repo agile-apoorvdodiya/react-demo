@@ -6,6 +6,7 @@ export const userSlice = createSlice({
     userList: [],
     userDetails: {},
     success: {},
+    fileUploadProgress: 0,
   },
   reducers: {
     usersList: (s, action) => {

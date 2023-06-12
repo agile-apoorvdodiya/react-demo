@@ -1,20 +1,32 @@
 import { login } from "../slices/auth";
 import { API } from "../constants/api";
 import axios from "axios";
-import { error as apiError, success as apiSuccess } from "../slices/api";
+import {
+  error as apiError,
+  success as apiSuccess,
+  fileProgress,
+} from "../slices/api";
 export const apiMiddleware = (store) => (next) => (action) => {
   next(action);
   const { type, payload } = action;
 
   if (type === API) {
-    const { method, url, data, params, success } = payload;
+    const { method, url, data, params, success, apiUrl } = payload;
 
     return axios({
       method,
       data,
       url,
       params,
-      baseURL: "http://localhost:3001/",
+      baseURL: apiUrl || "http://localhost:3001/",
+      onUploadProgress: (progress) => {
+        try {
+          console.log("progress", progress.loaded / progress.total);
+          store.dispatch(fileProgress({ progress: progress.loaded / progress.total }));
+        } catch (error) {
+          console.log("err ", error);
+        }
+      },
     })
       .then((res) => {
         store.dispatch(apiSuccess(res));

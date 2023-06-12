@@ -4,9 +4,11 @@ import { getUsersList } from "../../redux/action-call/users";
 import { Modal } from "../../components/modal";
 import { AddEditUser } from "./components/add-edit-user";
 import { css } from "../../constants/classes";
+import { useNavigate } from "react-router-dom";
 
 export const Users = (props) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const users = useSelector((s) => s?.users?.userList || []);
   const userModal = useRef();
@@ -52,7 +54,7 @@ export const Users = (props) => {
                   )}
                 </td>
                 <td className="text-center">
-                  <button className="mx-1">
+                  <button className="mx-1" onClick={() => navigate(`/users/${u._id}`)}>
                     <i className="fa fa-eye fa-sm"></i>
                   </button>
                   <button

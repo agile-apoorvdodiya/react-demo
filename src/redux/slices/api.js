@@ -7,6 +7,7 @@ export const apiSlice = createSlice({
     loading: undefined,
     response: undefined,
     error: undefined,
+    fileUploadProgress: 0
   },
   reducers: {
     request: (s, p) => {
@@ -20,8 +21,12 @@ export const apiSlice = createSlice({
       s.loading = false;
       s.error = p;
     },
+    fileProgress: (s, action) => {
+      console.log(' file progress action ', action)
+      s.fileUploadProgress = action.payload.progress;
+    },
   }
 })
 
-export const { request, success, error } = apiSlice.actions;
+export const { request, success, error, fileProgress } = apiSlice.actions;
 export default apiSlice.reducer;
