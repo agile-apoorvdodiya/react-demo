@@ -72,7 +72,7 @@ export const AddEditUser = forwardRef((props, ref) => {
 
   const getUserData = () => {
     dispatch(getUsersDetails(id, {})).then((res) => {
-      userForm?.setValues(res.user);
+      userForm?.setValues(res.data);
     });
   };
 

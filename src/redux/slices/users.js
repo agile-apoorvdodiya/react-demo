@@ -9,13 +9,13 @@ export const userSlice = createSlice({
   },
   reducers: {
     usersList: (s, action) => {
-      s.userList = action.payload.users;
+      s.userList = action.payload.data;
     },
     usersDetails: (s, action) => {
-      s.userDetails = action.payload.user;
+      s.userDetails = action.payload.data;
     },
     success: (s, action) => {
-      s.success = action.payload.user;
+      s.success = action.payload.data;
     },
   },
 });

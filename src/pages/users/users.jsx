@@ -32,6 +32,9 @@ export const Users = (props) => {
           <thead>
             <tr>
               <th className="text-left">Name</th>
+              <th className="text-left">Contact</th>
+              <th className="text-left">Email</th>
+              <th className="text-left">Admin Access</th>
               <th className="">Actions</th>
             </tr>
           </thead>
@@ -39,8 +42,10 @@ export const Users = (props) => {
             {users?.map((u, i) => (
               <tr key={u?._id || i}>
                 <td>{u?.name}</td>
+                <td>{u?.contact}</td>
+                <td>{u?.email}</td>
                 <td>
-                  {u?.admin ? (
+                  {!u?.admin ? (
                     <i className="fa fa-times fa-sm"></i>
                   ) : (
                     <i className="fa fa-check fa-sm"></i>

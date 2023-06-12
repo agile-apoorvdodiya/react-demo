@@ -14,7 +14,7 @@ export const apiMiddleware = (store) => (next) => (action) => {
       data,
       url,
       params,
-      baseURL: "http://localhost:3000/",
+      baseURL: "http://localhost:3001/",
     })
       .then((res) => {
         store.dispatch(apiSuccess(res));
