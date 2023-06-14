@@ -42,7 +42,6 @@ export const postUsersDetails = (data) => ({
 });
 
 export const postUsersDocument = (data, id) => {
-  console.log(data)
   return ({
     type: API,
     payload: {

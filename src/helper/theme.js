@@ -1,6 +1,5 @@
 export const toggleDarkMode = () => {
   const isDark = localStorage.getItem("isDark") === 'true';
-  console.log(isDark, typeof isDark);
   localStorage.setItem("isDark", isDark ? false : true);
   setTheme(!isDark);
 };

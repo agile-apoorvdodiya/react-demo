@@ -22,7 +22,6 @@ export const apiSlice = createSlice({
       s.error = p;
     },
     fileProgress: (s, action) => {
-      console.log(' file progress action ', action)
       s.fileUploadProgress = action.payload.progress;
     },
   }

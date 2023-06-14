@@ -14,22 +14,17 @@ export const UserDetails = () => {
   const user = useSelector((s) => s?.users?.userDetails);
   const progress = useSelector((s) => s?.api?.fileUploadProgress);
   useEffect(() => {
-    console.log(params);
     if (params.id) {
       dispatch(getUsersDetails(params.id, {}));
     }
   }, [params]);
   const uploadFile = () => {
     if (file && params.id) {
-      console.log(file);
       const formData = new FormData();
       formData.append("file", file);
       dispatch(postUsersDocument(formData, params.id));
     }
   };
-  useEffect(() => {
-    console.log(progress);
-  }, [progress])
   return (
     <>
       <div>
@@ -52,9 +47,7 @@ export const UserDetails = () => {
             ) : (
               <button
                 className={css.BTN_PRIM}
-                onClick={() => {
-                  console.log(fileElement.current.click());
-                }}
+                onClick={() => fileElement.current.click()}
               >
                 <input
                   ref={fileElement}

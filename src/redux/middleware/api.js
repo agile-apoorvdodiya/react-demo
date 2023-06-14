@@ -21,10 +21,8 @@ export const apiMiddleware = (store) => (next) => (action) => {
       baseURL: apiUrl || "http://localhost:3001/",
       onUploadProgress: (progress) => {
         try {
-          console.log("progress", progress.loaded / progress.total);
           store.dispatch(fileProgress({ progress: progress.loaded / progress.total }));
         } catch (error) {
-          console.log("err ", error);
         }
       },
     })

@@ -6,6 +6,7 @@ import { UserDetails } from "../pages/user-details/user-details";
 import { FormsList } from "../pages/forms/form-list";
 import { Layout } from "../components/layout";
 import { AuthGuard } from "../components/auth-guard";
+import { FormSubmit } from "../pages/form-submit/form-submit";
 import { setUser } from "../redux/slices/auth";
 import { useEffect } from "react";
 
@@ -14,6 +15,7 @@ export const AppRoutes = (props) => {
   return (
     <Routes>
       <Route path="/login" element={<Login />} />
+      <Route path="/form-submit/:id" element={<FormSubmit />} />
       <Route
         path="/"
         element={

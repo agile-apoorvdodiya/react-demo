@@ -33,7 +33,6 @@ export const Login = (props) => {
       dispatch(doLogin(value)).then((res) => {
         navigate("/users");
       }).catch(err => {
-        console.log(err);
         Swal.fire({
           title: err.message || 'Something went wrong while logging in!',
           icon: 'error'

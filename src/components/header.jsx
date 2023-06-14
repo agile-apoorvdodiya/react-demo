@@ -33,7 +33,7 @@ export const Header = (props) => {
           </div>
         </div>
         <div className="flex">
-          <div className="text-slate-800 dark:text-slate-200 mx-2">{user.name}</div>
+          <div className="text-slate-800 dark:text-slate-200 mx-2">{user?.name}</div>
           <button className={`${css.BTN_OUTLINE} mx-1`} onClick={onThemeChange}>
             {isDark ? "Light" : "Dark"}
           </button>

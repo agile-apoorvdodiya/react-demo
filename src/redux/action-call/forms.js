@@ -1,56 +1,62 @@
-import { success, usersDetails, usersList } from "../slices/users";
-import { API, GET, POST, PUT, USER_URL, FILE_UPLOAD_URL } from "../constants/api";
+import { success, formDetails, formsList } from "../slices/forms";
+import { API, GET, POST, PUT, FORM_URL, DELETE } from "../constants/api";
 
-export const getUsersList = (data) => ({
+export const getFormsList = (data = {}) => ({
   type: API,
   payload: {
-    url: `${USER_URL}`,
+    url: `${FORM_URL}`,
     data,
     method: GET,
-    success: usersList,
+    success: formsList,
   },
 });
 
-export const getUsersDetails = (id, data) => ({
+export const getSingleForm = (id, data) => ({
   type: API,
   payload: {
-    url: `${USER_URL}/${id}`,
+    url: `${FORM_URL}/${id}`,
     data,
     method: GET,
-    success: usersDetails,
+    success: formDetails,
   },
 });
 
-export const putUsersDetails = (id, data) => ({
+export const putFormDetails = (id, data) => ({
   type: API,
   payload: {
-    url: `${USER_URL}/${id}`,
+    url: `${FORM_URL}/${id}`,
     data,
     method: PUT,
     success: success,
   },
 });
 
-export const postUsersDetails = (data) => ({
+export const postFormDetails = (data) => ({
   type: API,
   payload: {
-    url: `${USER_URL}`,
+    url: `${FORM_URL}`,
     data,
     method: POST,
     success: success,
   },
 });
 
-export const postUsersDocument = (data, id) => {
-  console.log(data)
-  return ({
-    type: API,
-    payload: {
-      url: `${USER_URL}/upload/${id}`,
-      apiUrl: FILE_UPLOAD_URL,
-      data,
-      method: POST,
-      success: success,
-    },
-  })
-};
+export const deleteForm = (id, data = {}) => ({
+  type: API,
+  payload: {
+    url: `${FORM_URL}/${id}`,
+    data,
+    method: DELETE,
+    success: success,
+  },
+});
+
+export const submitForm = (data = {}) => ({
+  type: API,
+  payload: {
+    url: `${FORM_URL}/submit`,
+    data,
+    method: POST,
+    success: success,
+  },
+});
