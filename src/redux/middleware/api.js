@@ -18,7 +18,7 @@ export const apiMiddleware = (store) => (next) => (action) => {
       data,
       url,
       params,
-      baseURL: apiUrl || "http://localhost:3001/",
+      baseURL: apiUrl || process.env.REACT_APP_USER_MGMT_URL,
       onUploadProgress: (progress) => {
         try {
           store.dispatch(fileProgress({ progress: progress.loaded / progress.total }));
