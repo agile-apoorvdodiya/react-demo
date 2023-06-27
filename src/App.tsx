@@ -1,17 +1,22 @@
-import React from 'react';
-import './App.scss';
-import { Provider } from "react-redux";
-import store from './redux/store';
+import React, { useMemo } from "react";
+import "./App.scss";
 import { BrowserRouter } from "react-router-dom";
-import { ApiRoutes } from './routes'
+import { ApiRoutes } from "./routes";
+import { ThemeProvider } from "@emotion/react";
+import { getAppTheme } from "./theme";
+import { useSelector } from "react-redux";
+import { IRootState } from "./interfaces/api";
 
 function App() {
+  const isDarkMode = useSelector<IRootState, boolean>(s => s?.common?.isDarkMode);
+  
+  const theme = useMemo(() => getAppTheme(true), []);
   return (
-    <Provider store={store}>
+    <ThemeProvider theme={getAppTheme}>
       <BrowserRouter>
         <ApiRoutes />
       </BrowserRouter>
-    </Provider>
+    </ThemeProvider>
   );
 }
 

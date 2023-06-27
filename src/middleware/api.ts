@@ -4,7 +4,7 @@ import axios from "axios";
 import { Middleware } from "redux";
 import { IRootState } from "../interfaces/api";
 import { apiError, apiSuccess } from "../redux/slices/api";
-export const apiMiddleware: Middleware<{}, IRootState> =
+export const apiMiddleware: Middleware<{}, any> =
   (store) => (next) => (action) => {
     next(action);
 
@@ -24,7 +24,7 @@ export const apiMiddleware: Middleware<{}, IRootState> =
           method,
           data,
           params,
-          baseURL: process.env.REACT_APP_BASE_URL || 'https://localhost:3300/',
+          baseURL: process.env.REACT_APP_USER_MGMT_URL,
         })
           .then((res) => {
             store.dispatch(apiSuccess(res));

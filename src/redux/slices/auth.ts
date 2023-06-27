@@ -1,16 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { IUser } from "../../interfaces/user";
 
 export const authSlice = createSlice({
   name: "auth",
   initialState: {
     token: "",
-    user: {},
+    user: {} as IUser,
     isLoggedIn: false,
   },
   reducers: {
     login: (s, action) => {
-      localStorage.setItem("user", JSON.stringify(action?.payload?.data || {}));
-      localStorage.setItem("token", action.payload?.data?.token);
+      localStorage.setItem("user", JSON.stringify(action?.payload?.data?.data || {}));
+      localStorage.setItem("token", action.payload?.data?.data?.token);
       s.token = action.payload.data?.token;
       s.user = action.payload.data;
       s.isLoggedIn = true;
@@ -18,7 +19,7 @@ export const authSlice = createSlice({
     logout: (s) => {
       localStorage.clear();
       s.token = "";
-      s.user = {};
+      s.user = {} as IUser;
       s.isLoggedIn = false;
     },
     setSessionUser: (s) => {

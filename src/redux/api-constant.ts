@@ -1,5 +1,5 @@
 export const POST = "POST";
 
-export const API = "http://localhost:3000/";
+export const API = "API";
 
 export const USER_URL = "users";

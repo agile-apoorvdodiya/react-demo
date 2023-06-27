@@ -1,8 +1,9 @@
-import { IUser } from "../../interfaces/user";
+import { AnyAction } from "redux";
+import { IUserLogin } from "../../interfaces/user";
 import { API, USER_URL, POST } from "../api-constant";
 import { login } from "../slices/auth";
 
-export const doLogin = (data: IUser) => ({
+export const doLogin = (data: IUserLogin) => ({
   type: API,
   payload: {
     url: `${USER_URL}/login`,
@@ -13,3 +14,13 @@ export const doLogin = (data: IUser) => ({
 });
 
 export const dummyLogin = (data: any) => login(data);
+
+export const attemptLogin = (data: IUserLogin): AnyAction => ({
+  type: API,
+  payload: {
+    url: `${USER_URL}/login`,
+    method: POST,
+    success: login,
+    data,
+  },
+});
