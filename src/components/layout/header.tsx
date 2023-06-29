@@ -15,8 +15,10 @@ import {
 import MenuIcon from "@mui/icons-material/Menu";
 import AdbIcon from "@mui/icons-material/Adb";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../redux/slices/auth";
+import { IRootState } from "../../interfaces/api";
+import { IUser } from "../../interfaces/user";
 
 const pages = [
   {
@@ -37,6 +39,7 @@ const pages = [
 ];
 
 export function Header() {
+  const userDetails = useSelector<IRootState, IUser>((s) => s?.auth?.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
@@ -67,7 +70,7 @@ export function Header() {
 
   const logoutUser = () => {
     dispatch(logout());
-  }
+  };
   return (
     <AppBar position="absolute" sx={{}}>
       <Container maxWidth="xl">
@@ -180,7 +183,9 @@ export function Header() {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <Avatar alt="Remy Sharp">
+                  {userDetails?.name[0]?.toUpperCase()}
+                </Avatar>
               </IconButton>
             </Tooltip>
             <Menu

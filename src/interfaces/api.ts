@@ -5,6 +5,7 @@ export interface IRootState {
   auth: IAuthState;
   common: ICommonState;
   socket: ISocketState;
+  user: IUserState;
 }
 
 export interface IAPIState {
@@ -25,4 +26,10 @@ export interface ICommonState {
 
 export interface ISocketState {
   status: boolean;
+}
+
+export interface IUserState {
+  userList: any[];
+  userDetails: any;
+  success: any;
 }

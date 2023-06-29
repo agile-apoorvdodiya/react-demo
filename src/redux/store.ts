@@ -5,6 +5,7 @@ import apiReducer from "./slices/api";
 import authReducer from "./slices/auth";
 import commonReducer from "./slices/common";
 import socketReducer from "./slices/socket";
+import usersReducer from "./slices/users";
 
 export default configureStore({
   reducer: {
@@ -12,6 +13,7 @@ export default configureStore({
     auth: authReducer,
     common: commonReducer,
     socket: socketReducer,
+    user: usersReducer,
   },
   middleware: [thunk, apiMiddleware],
 });

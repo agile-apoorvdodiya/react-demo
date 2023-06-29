@@ -4,6 +4,7 @@ import { Home } from "./pages/home";
 import { Chat } from "./pages/chat";
 import { Layout } from "./components/layout/index";
 import { AuthGuard } from "./components/auth-guard";
+import { User } from "./pages/user/index";
 import { setSessionUser } from "./redux/slices/auth";
 import { useDispatch } from "react-redux";
 
@@ -25,10 +26,8 @@ export const ApiRoutes = () => {
         >
           <Route path="home" element={<Home />} />
           <Route path="chat" element={<Chat />} />
-          <Route
-            path="*"
-            element={<Navigate to="home" replace={true} />}
-          ></Route>
+          <Route path="users" element={<User />} />
+          <Route path="*" element={<Navigate to="home" replace={true} />} />
         </Route>
       </Route>
     </Routes>
