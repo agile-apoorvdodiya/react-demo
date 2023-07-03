@@ -16,18 +16,19 @@ export const AddEditUser = ({
   const userDetails = useSelector<IRootState, any>((s) => s?.user?.userDetails);
   // const success = useSelector<IRootState, any>(s => s?.user?.success)
   const dispatch = useDispatch();
-  useEffect(() => {
-    userId && getUserDetails(userId);
-  }, [userId]);
+  // useEffect(() => {
+  //   userId && getUserDetails(userId);
+  // }, [userId]);
 
-  const getUserDetails = (userId: string) => {
-    dispatch(getUserById(userId)).then((res: any) => {
-      console.log('user details ', res);
-      
-    }).catch((err: any) => {
-      console.log('err ', err)
-    });
-  };
+  // const getUserDetails = (userId: string) => {
+  //   dispatch(getUserById(userId))
+  //     .then((res: any) => {
+  //       console.log("user details ", res);
+  //     })
+  //     .catch((err: any) => {
+  //       console.log("err ", err);
+  //     });
+  // };
 
   return (
     <AppModal
@@ -41,7 +42,7 @@ export const AddEditUser = ({
         }}
       >
         <Formik
-          initialValues={{
+          initialValues={userId ? userId : {
             name: "",
             email: "",
             contact: "",
@@ -59,7 +60,7 @@ export const AddEditUser = ({
             console.log(value);
             (
               (userId
-                ? dispatch(putUser(userId, value))
+                ? dispatch(putUser(userId?._id, value))
                 : dispatch(createUser(value))) as any
             ).then((res: any) => {
               console.log("success", res);
@@ -68,84 +69,88 @@ export const AddEditUser = ({
             });
           }}
         >
-          <Form>
-            <Box
-              letterSpacing={1}
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-              }}
-            >
-              <Box sx={{ display: "flex", flexDirection: "column" }}>
-                <Field
-                  id="Name"
-                  name="name"
-                  sx={{ my: 1 }}
-                  type="text"
-                  variant="outlined"
-                  size="small"
-                  label="Name"
-                  component={(props: FieldProps) => <AppInput {...props} />}
-                />
-              </Box>
-              <Box sx={{ display: "flex", flexDirection: "column" }}>
-                <Field
-                  id="email"
-                  name="email"
-                  sx={{ my: 1 }}
-                  type="email"
-                  variant="outlined"
-                  size="small"
-                  label="Email"
-                  component={(props: FieldProps) => <AppInput {...props} />}
-                />
-              </Box>
-              <Box sx={{ display: "flex", flexDirection: "column" }}>
-                <Field
-                  id="contact"
-                  name="contact"
-                  sx={{ my: 1 }}
-                  type="text"
-                  variant="outlined"
-                  size="small"
-                  label="Contact"
-                  component={(props: FieldProps) => <AppInput {...props} />}
-                />
-              </Box>
-              <Box sx={{ display: "flex", flexDirection: "column" }}>
-                <Field
-                  id="password"
-                  name="password"
-                  sx={{ my: 1 }}
-                  type="password"
-                  variant="outlined"
-                  size="small"
-                  label="Password"
-                  component={(props: FieldProps) => <AppInput {...props} />}
-                />
-              </Box>
-              <Box sx={{ display: "flex", flexDirection: "column" }}>
-                <Field
-                  id="admin"
-                  name="admin"
-                  sx={{ my: 1 }}
-                  type="checkbox"
-                  size="small"
-                  label="Make user an admin"
-                  component={({ form, field, ...props }: any) => (
-                    <FormControlLabel
-                      {...props}
-                      {...field}
-                      control={<Checkbox />}
+          {/* {({ errors, touched, isSubmitting, setFieldValue}) => {
+            return ( */}
+              <Form>
+                <Box
+                  letterSpacing={1}
+                  sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                  }}
+                >
+                  <Box sx={{ display: "flex", flexDirection: "column" }}>
+                    <Field
+                      id="Name"
+                      name="name"
+                      sx={{ my: 1 }}
+                      type="text"
+                      variant="outlined"
+                      size="small"
+                      label="Name"
+                      component={(props: FieldProps) => <AppInput {...props} />}
                     />
-                  )}
-                />
-              </Box>
-              <Button variant="outlined" type="submit">
-                Save
-              </Button>
-            </Box>
-          </Form>
+                  </Box>
+                  <Box sx={{ display: "flex", flexDirection: "column" }}>
+                    <Field
+                      id="email"
+                      name="email"
+                      sx={{ my: 1 }}
+                      type="email"
+                      variant="outlined"
+                      size="small"
+                      label="Email"
+                      component={(props: FieldProps) => <AppInput {...props} />}
+                    />
+                  </Box>
+                  <Box sx={{ display: "flex", flexDirection: "column" }}>
+                    <Field
+                      id="contact"
+                      name="contact"
+                      sx={{ my: 1 }}
+                      type="text"
+                      variant="outlined"
+                      size="small"
+                      label="Contact"
+                      component={(props: FieldProps) => <AppInput {...props} />}
+                    />
+                  </Box>
+                  <Box sx={{ display: "flex", flexDirection: "column" }}>
+                    <Field
+                      id="password"
+                      name="password"
+                      sx={{ my: 1 }}
+                      type="password"
+                      variant="outlined"
+                      size="small"
+                      label="Password"
+                      component={(props: FieldProps) => <AppInput {...props} />}
+                    />
+                  </Box>
+                  <Box sx={{ display: "flex", flexDirection: "column" }}>
+                    <Field
+                      id="admin"
+                      name="admin"
+                      sx={{ my: 1 }}
+                      type="checkbox"
+                      size="small"
+                      label="Make user an admin"
+                      component={({ form, field, ...props }: any) => (
+                        <FormControlLabel
+                          {...props}
+                          {...field}
+                          control={<Checkbox />}
+                        />
+                      )}
+                    />
+                  </Box>
+                  <Button variant="outlined" type="submit">
+                    Save
+                  </Button>
+                </Box>
+              </Form>
+            {/* );
+          }} */}
         </Formik>
       </Box>
     </AppModal>

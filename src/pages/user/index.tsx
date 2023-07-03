@@ -19,7 +19,7 @@ import Edit from "@mui/icons-material/Edit";
 import Delete from "@mui/icons-material/Delete";
 import { AddEditUser } from "../../components/user/add-edit";
 import { Confirm } from "../../components/common/confirm";
-
+import { CheckCircle, Cancel } from "@mui/icons-material";
 export const User = () => {
   const users: any[] = useSelector<IRootState, any>((s) => s?.user?.userList);
   const [modal, setModal] = useState<null | string>(null);
@@ -36,12 +36,11 @@ export const User = () => {
   }, []);
 
   const handleModalClose = (data: any) => {
-    console.log(data)
-    if (data?.refresh) getUserList();
+    console.log(data);
+    if (data?.refresh) fetchUsers();
   };
 
   const handleDeleteUser = (data: any) => {
-    // const handleDeleteUser = (action: "confirm" | "dismiss", id: string) => {
     console.log(data);
     if (data?.action === "confirm")
       dispatch(deleteUser(data?.id))
@@ -54,9 +53,9 @@ export const User = () => {
         });
   };
 
-  const onAddOrEdit = (id: string | null = null) => {
-    setEditUser(id);
-    setModal(id ? "edit" : "add");
+  const onAddOrEdit = (user: string | null = null) => {
+    setEditUser(user);
+    setModal(user ? "edit" : "add");
   };
 
   return (
@@ -75,6 +74,7 @@ export const User = () => {
                 <TableCell>Name</TableCell>
                 <TableCell>Contact</TableCell>
                 <TableCell>Email</TableCell>
+                <TableCell>Admin</TableCell>
                 <TableCell>Action</TableCell>
               </TableRow>
             </TableHead>
@@ -90,14 +90,21 @@ export const User = () => {
                   <TableCell>{row.contact}</TableCell>
                   <TableCell>{row.email}</TableCell>
                   <TableCell>
+                    {row.admin ? (
+                      <CheckCircle color="success" fontSize="small" />
+                    ) : (
+                      <Cancel color="error" fontSize="small" />
+                    )}
+                  </TableCell>
+                  <TableCell>
                     <Box sx={{ display: "flex", justifyContent: "center" }}>
-                      <IconButton onClick={() => onAddOrEdit(row?._id)}>
-                        <Edit sx={{ mx: 1 }} fontSize="small"></Edit>
+                      <IconButton onClick={() => onAddOrEdit(row)}>
+                        <Edit color="info" sx={{ mx: 1 }} fontSize="small"></Edit>
                       </IconButton>
                       <IconButton
                         onClick={() => dialogRef?.current?.open(row?._id)}
                       >
-                        <Delete sx={{ mx: 1 }} fontSize="small"></Delete>
+                        <Delete color="error" sx={{ mx: 1 }} fontSize="small"></Delete>
                       </IconButton>
                     </Box>
                   </TableCell>
@@ -111,10 +118,12 @@ export const User = () => {
         modalState={modal}
         setModalState={setModal}
         userId={editUser}
+        open={false}
         onModalClose={(data: any) => handleModalClose(data)}
       />
       <Confirm
         title="Are you sure you want to delete this account"
+        open={false}
         ref={dialogRef}
         onDialogClose={(data: any) => handleDeleteUser(data)}
         showCancelButton={true}

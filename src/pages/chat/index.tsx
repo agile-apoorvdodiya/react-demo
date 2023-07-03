@@ -57,7 +57,7 @@ export const Chat = () => {
     <div>
       <Container>
         <Grid container>
-          <Grid xs={4} p={1}>
+          <Grid item={true} xs={4} p={1}>
             <Accordion sx={{ bgcolor: "darkcyan" }}>
               <AccordionSummary>
                 <Typography
@@ -145,7 +145,7 @@ export const Chat = () => {
               </AccordionDetails>
             </Accordion>
           </Grid>
-          <Grid xs={8} p={1}>
+          <Grid item={true} xs={8} p={1}>
             {activeChat?.members ? (
               <RoomWindow room={activeChat} />
             ) : (
