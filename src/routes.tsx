@@ -2,6 +2,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import { Login } from "./pages/login";
 import { Home } from "./pages/home";
 import { Chat } from "./pages/chat";
+import { Forms } from "./pages/forms";
 import { Layout } from "./components/layout/index";
 import { AuthGuard } from "./components/auth-guard";
 import { User } from "./pages/user/index";
@@ -27,7 +28,8 @@ export const ApiRoutes = () => {
           <Route path="home" element={<Home />} />
           <Route path="chat" element={<Chat />} />
           <Route path="users" element={<User />} />
-          <Route path="*" element={<Navigate to="home" replace={true} />} />
+          <Route path="forms" element={<Forms />} />
+          <Route path="*" element={<Navigate to="users" replace={true} />} />
         </Route>
       </Route>
     </Routes>

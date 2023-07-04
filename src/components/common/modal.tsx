@@ -1,7 +1,7 @@
 import { Box, IconButton, Modal, Paper, Typography } from "@mui/material";
 import Close from "@mui/icons-material/Close";
 
-export const AppModal = ({ children, open, setOpen, headerText }: any) => {
+export const AppModal = ({ children, open, setOpen, headerText, size = 'md' }: any) => {
   return (
     <Modal open={!!open}>
       <Paper
@@ -10,7 +10,7 @@ export const AppModal = ({ children, open, setOpen, headerText }: any) => {
           top: "50%",
           left: "50%",
           transform: "translate(-50%, -50%)",
-          width: 400,
+          width: size === 'md' ? 400 : (size === 'lg' ? 800 : 300),
           bgcolor: "background.paper",
           border: "1px solid #000",
           boxShadow: 24,

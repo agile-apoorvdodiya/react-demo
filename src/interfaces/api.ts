@@ -6,6 +6,7 @@ export interface IRootState {
   common: ICommonState;
   socket: ISocketState;
   user: IUserState;
+  form: IFormState
 }
 
 export interface IAPIState {
@@ -31,5 +32,11 @@ export interface ISocketState {
 export interface IUserState {
   userList: any[];
   userDetails: any;
+  success: any;
+}
+
+export interface IFormState {
+  formList: any[];
+  formDetails: any;
   success: any;
 }

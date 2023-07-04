@@ -6,3 +6,4 @@ export const DELETE = "DELETE";
 export const API = "API";
 
 export const USER_URL = "users";
+export const FORM_URL = "form-builder";

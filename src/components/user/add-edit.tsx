@@ -16,20 +16,7 @@ export const AddEditUser = ({
   const userDetails = useSelector<IRootState, any>((s) => s?.user?.userDetails);
   // const success = useSelector<IRootState, any>(s => s?.user?.success)
   const dispatch = useDispatch();
-  // useEffect(() => {
-  //   userId && getUserDetails(userId);
-  // }, [userId]);
-
-  // const getUserDetails = (userId: string) => {
-  //   dispatch(getUserById(userId))
-  //     .then((res: any) => {
-  //       console.log("user details ", res);
-  //     })
-  //     .catch((err: any) => {
-  //       console.log("err ", err);
-  //     });
-  // };
-
+  
   return (
     <AppModal
       open={modalState}
