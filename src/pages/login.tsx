@@ -24,7 +24,7 @@ export const Login = () => {
   const navigate = useNavigate();
   useEffect(() => {
     if (isLoggedIn) {
-      navigate("/home", { replace: true });
+      navigate("/users", { replace: false });
     }
   }, [isLoggedIn]);
 

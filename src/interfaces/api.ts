@@ -23,6 +23,7 @@ export interface IAuthState {
 
 export interface ICommonState {
   isDarkMode: boolean;
+  snackBar: any;
 }
 
 export interface ISocketState {

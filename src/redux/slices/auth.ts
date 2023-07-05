@@ -13,7 +13,7 @@ export const authSlice = createSlice({
       localStorage.setItem("user", JSON.stringify(action?.payload?.data?.data || {}));
       localStorage.setItem("token", action.payload?.data?.data?.token);
       s.token = action.payload.data?.token;
-      s.user = action.payload.data;
+      s.user = action.payload.data?.data;
       s.isLoggedIn = true;
     },
     logout: (s) => {

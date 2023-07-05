@@ -88,7 +88,6 @@ export function Header() {
             variant="h6"
             noWrap
             component="a"
-            href="/"
             sx={{
               mr: 2,
               display: { xs: "none", md: "flex" },
@@ -99,7 +98,7 @@ export function Header() {
               textDecoration: "none",
             }}
           >
-            LOGO
+            REACT-DEMO
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
@@ -154,7 +153,6 @@ export function Header() {
             variant="h5"
             noWrap
             component="a"
-            href=""
             sx={{
               mr: 2,
               display: { xs: "flex", md: "none" },
@@ -184,7 +182,7 @@ export function Header() {
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Avatar alt="Remy Sharp">
-                  {userDetails?.name[0]?.toUpperCase()}
+                  {userDetails?.name && userDetails?.name[0]?.toUpperCase()}
                 </Avatar>
               </IconButton>
             </Tooltip>

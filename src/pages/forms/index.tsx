@@ -1,4 +1,5 @@
 import {
+  Alert,
   Box,
   Button,
   Container,
@@ -34,6 +35,7 @@ export const Forms = () => {
   useEffect(() => {
     fetchForms();
   }, []);
+  const [temp, setTemp] = useState(true);
 
   const handleModalClose = (data: any) => {
     console.log(data);
@@ -54,7 +56,7 @@ export const Forms = () => {
   };
 
   const onAddOrEdit = (form: string | null = null) => {
-    console.log('edit ', form)
+    console.log("edit ", form);
     setEditForm(form);
     setModal(form ? "edit" : "add");
   };
@@ -90,12 +92,20 @@ export const Forms = () => {
                   <TableCell>
                     <Box sx={{ display: "flex", justifyContent: "center" }}>
                       <IconButton onClick={() => onAddOrEdit(row)}>
-                        <Edit color="info" sx={{ mx: 1 }} fontSize="small"></Edit>
+                        <Edit
+                          color="info"
+                          sx={{ mx: 1 }}
+                          fontSize="small"
+                        ></Edit>
                       </IconButton>
                       <IconButton
                         onClick={() => dialogRef?.current?.open(row?._id)}
                       >
-                        <Delete color="error" sx={{ mx: 1 }} fontSize="small"></Delete>
+                        <Delete
+                          color="error"
+                          sx={{ mx: 1 }}
+                          fontSize="small"
+                        ></Delete>
                       </IconButton>
                     </Box>
                   </TableCell>

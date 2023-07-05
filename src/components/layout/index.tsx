@@ -9,14 +9,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { setStatus } from "../../redux/slices/socket";
 import { IRootState } from "../../interfaces/api";
 import { IUser } from "../../interfaces/user";
+import { Alert, IconButton, Snackbar } from "@mui/material";
+import { Close } from "@mui/icons-material";
+import { setSnackBar } from "../../redux/slices/common";
+import { green } from "@mui/material/colors";
 
 export const Layout = ({ children }: IProps) => {
   const dispatch = useDispatch();
   const userDetails = useSelector<IRootState, IUser>((s) => s.auth.user);
+  const snackBar: any = useSelector<IRootState>((s) => s?.common?.snackBar);
 
   useEffect(() => {
     if (userDetails?.name) {
-      
       socket.connect();
       socket.on("connect", () => {
         // alert('you re connected to socket')
@@ -70,6 +74,46 @@ export const Layout = ({ children }: IProps) => {
       <div>
         <Footer />
       </div>
+      <Snackbar
+        {...(snackBar?.timeout ? { autoHideDuration: 5000 } : {})}
+        onClose={() =>
+          dispatch(
+            setSnackBar({
+              open: false,
+            })
+          )
+        }
+        open={snackBar?.open}
+        message={snackBar?.message || "no message"}
+        action={
+          <IconButton
+            onClick={() =>
+              dispatch(
+                setSnackBar({
+                  open: false,
+                })
+              )
+            }
+          >
+            <Close></Close>
+          </IconButton>
+        }
+      />
+      {/* <Snackbar
+        {...(snackBar?.timeout ? { autoHideDuration: 3000 } : {})}
+        onClose={() =>
+          dispatch(
+            setSnackBar({
+              open: false,
+            })
+          )
+        }
+        open={snackBar?.open}
+      >
+        <Alert severity="error" sx={{ width: "100%" }}>
+          {snackBar?.message}
+        </Alert>
+      </Snackbar> */}
     </PageWrapper>
   );
 };
